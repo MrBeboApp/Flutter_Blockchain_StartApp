@@ -1,0 +1,4 @@
+class NameModel {
+String siteName;
+
+}

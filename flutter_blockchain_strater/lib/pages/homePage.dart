@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
 
       appBar: AppBar(
         backgroundColor: Colors.amber,
+        title: Text("Arabic Dapps"),
       ),
       body: Container(
         child: Center(
