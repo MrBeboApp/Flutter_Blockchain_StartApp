@@ -9,9 +9,11 @@ import 'package:web_socket_channel/io.dart';
 class FactoryContract extends ChangeNotifier{
   //192.168.1.4
 
-  final String _networkUrl = "http://192.168.1.3:7545/";
-  final String _networkSocketUrl = "ws://192.168.1.3:7545/";
-  final String _myAccountPrivateKey ="cbd3dacf46cfbc8dcc3bf9490bda551eaab41dbe31bcccf09db47b9471ae615e";
+  final String _networkUrl = "https://ropsten.infura.io/v3/768f39d26fab4c5ab58268e883532d4c";
+  final String _networkSocketUrl = "wss://ropsten.infura.io/ws/v3/768f39d26fab4c5ab58268e883532d4c";
+  final String _myAccountPrivateKey ="72ba4ba8c0b174e49b20c11facf03bbcab114cb3e1600932cfed4825ccb7aeb3";
+  String myAddress = "0xA720eE5b6Fc85Ac3fc7438ca611Af88284E94113";
+  String myContractAddress = "0x81502442c4d776f181f565c02eee32276d232c30";
 
   bool isLoading = true;
   Web3Client _client;
@@ -34,8 +36,8 @@ class FactoryContract extends ChangeNotifier{
   }
 
 
-initialSetup() async {
-    _client = Web3Client(_networkUrl, Client(), socketConnector: () {
+Future <void>initialSetup() async {
+    _client = Web3Client(_networkUrl,  Client(), socketConnector: () {
       return IOWebSocketChannel.connect(_networkSocketUrl).cast<String>();
     });
 
@@ -49,10 +51,11 @@ initialSetup() async {
   Future<void> getAbi() async {
     String abiStringFile = await rootBundle.loadString("src/abis/Name.json");
     var jsonAbi = jsonDecode(abiStringFile);
-    _abiCode = jsonEncode(jsonAbi["abi"]);
+    _abiCode = jsonEncode(jsonAbi);
     _contractAddress =
-        EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
+        EthereumAddress.fromHex("0x81502442c4d776f181f565c02eee32276d232c30");
     print( "The Contract Address is "  + _contractAddress.toString());
+    print(_abiCode);
   }
 
   Future<void> getCredentials() async {
