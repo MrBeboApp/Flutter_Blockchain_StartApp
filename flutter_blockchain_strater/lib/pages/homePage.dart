@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blockchain_strater/helpers/factory.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage() : super();
+class HomePage extends StatelessWidget {
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var siteNameFactory = Provider.of<FactoryContract>(context);
     return Scaffold(
 
       appBar: AppBar(
@@ -18,16 +15,16 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("images/ardapps.png",scale: .8,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Welcome From arDapps.com",style:TextStyle(fontSize: 20),),
-              ),
-            ],
-          )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("images/ardapps.png",scale: .8,),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:siteNameFactory.isLoading? CircularProgressIndicator(color: Colors.red,):Text("Welcome From arDapps.com  the name from the contract is " + siteNameFactory.siteNameDeplyed ,style:TextStyle(fontSize: 20),)
+                ),
+              ],
+            )),
       ),
     );
   }
