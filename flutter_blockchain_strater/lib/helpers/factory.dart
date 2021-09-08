@@ -11,8 +11,9 @@ class FactoryContract extends ChangeNotifier{
 
   final String _networkUrl = "https://ropsten.infura.io/v3/768f39d26fab4c5ab58268e883532d4c";
   final String _networkSocketUrl = "wss://ropsten.infura.io/ws/v3/768f39d26fab4c5ab58268e883532d4c";
-  final String _myAccountPrivateKey ="72ba4ba8c0b174e49b20c11facf03bbcab114cb3e1600932cfed4825ccb7aeb3";
-  String myAddress = "0xA720eE5b6Fc85Ac3fc7438ca611Af88284E94113";
+
+  
+  final String _myAccountPrivateKey ="2e570ae3aed78a77ceb5ce32df1472e60d64d65f1484c8ee0563458a3babfbfe";
   String myContractAddress = "0x81502442c4d776f181f565c02eee32276d232c30";
 
   bool isLoading = true;
@@ -53,7 +54,7 @@ Future <void>initialSetup() async {
     var jsonAbi = jsonDecode(abiStringFile);
     _abiCode = jsonEncode(jsonAbi);
     _contractAddress =
-        EthereumAddress.fromHex("0x81502442c4d776f181f565c02eee32276d232c30");
+        EthereumAddress.fromHex(myContractAddress);
     print( "The Contract Address is "  + _contractAddress.toString());
     print(_abiCode);
   }
